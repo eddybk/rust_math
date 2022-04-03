@@ -1,6 +1,7 @@
 #[allow(unused)]
 
 pub mod matrix {
+    
     pub struct Matrix {
         shape: (i32, i32),
         data: Vec<Vec<f64>>
