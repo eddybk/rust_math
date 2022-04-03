@@ -1,6 +1,7 @@
-#[allow(unused)]
+#[allow(dead_code)]
 
 pub mod matrix {
+    #[derive(Debug)]
     
     pub struct Matrix {
         shape: (i32, i32),

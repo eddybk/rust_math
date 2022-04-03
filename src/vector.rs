@@ -1,4 +1,7 @@
+#[allow(dead_code)]
+
 pub mod vector {
+    #[derive(Debug)]
     pub struct Vector {
         shape: i32,
         data: Vec<f64>
