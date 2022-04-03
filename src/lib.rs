@@ -44,6 +44,46 @@ mod tests {
         assert_eq!(v.as_vec(), vec![1.0, 1.0]);
     }
     #[test]
+    fn it_tests_vector_to_vector_addition() {
+        use crate::vector::vector;
+        let mut v1 = vector::Vector::new(2);
+        v1.set(vec![2.0, 3.0]);
+        let mut v2 = vector::Vector::new(2);
+        v2.set(vec![2.0, 3.0]);
+        v1 += v2;
+        assert_eq!(v1.as_vec(), [4.0, 6.0]);
+    }
+    #[test]
+    fn it_tests_vector_to_vector_subtraction() {
+        use crate::vector::vector;
+        let mut v1 = vector::Vector::new(2);
+        v1.set(vec![2.0, 3.0]);
+        let mut v2 = vector::Vector::new(2);
+        v2.set(vec![2.0, 3.0]);
+        v1 -= v2;
+        assert_eq!(v1.as_vec(), [0.0, 0.0]);
+    }
+    #[test]
+    fn it_tests_vector_to_vector_multimplication() {
+        use crate::vector::vector;
+        let mut v1 = vector::Vector::new(2);
+        v1.set(vec![2.0, 3.0]);
+        let mut v2 = vector::Vector::new(2);
+        v2.set(vec![2.0, 3.0]);
+        v1 *= v2;
+        assert_eq!(v1.as_vec(), [4.0, 9.0]);
+    }
+    #[test]
+    fn it_tests_vector_to_vector_division() {
+        use crate::vector::vector;
+        let mut v1 = vector::Vector::new(2);
+        v1.set(vec![2.0, 3.0]);
+        let mut v2 = vector::Vector::new(2);
+        v2.set(vec![2.0, 3.0]);
+        v1 -= v2;
+        assert_eq!(v1.as_vec(), [0.0, 0.0]);
+    }
+    #[test]
     fn it_tests_dot_product_of_two_vectors() {
         use crate::vector::vector;
         let mut v1 = vector::Vector::new(3);
