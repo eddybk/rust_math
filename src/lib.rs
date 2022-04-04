@@ -115,4 +115,22 @@ mod tests {
         assert_ne!(m.as_vec()[0][0], m.as_vec()[0][1]);
         assert_ne!(m.as_vec()[1][0], m.as_vec()[1][1]);
     }
+    #[test]
+    fn it_tests_matrix_set() {
+        use crate::matrix::matrix;
+        let mut m = matrix::Matrix::random((2, 2), (-1., 0.));
+        m.set(vec![vec![0.; 2]; 2]);
+        let vec = vec![vec![0.; 2]; 2];
+        assert_eq!(m.as_vec(), vec);
+    }
+    #[test]
+    fn it_tests_matrix_multiplication() {
+        use crate::matrix::matrix;
+        let mut m = matrix::Matrix::new(2, 3);
+        m.set(vec![vec![1., 2., 3.], vec![4., 5., 6.]]);
+        let mut m2 = matrix::Matrix::new(3, 2);
+        m2.set(vec![vec![1., 2.], vec![3., 4.], vec![5., 6.]]);
+        let res = vec![vec![22., 28.], vec![49., 64.]];
+        assert_eq!(res, matrix::Matrix::dot(m, m2).as_vec());
+    }
 }

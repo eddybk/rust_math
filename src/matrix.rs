@@ -4,7 +4,7 @@
 pub mod matrix {
 
     #[derive(Debug)]
-    
+    /// A 2 dimensional array
     pub struct Matrix {
         shape: (i32, i32),
         data: Vec<Vec<f64>>
@@ -50,9 +50,26 @@ pub mod matrix {
                 data: v
             }
         }
+        pub fn set(&mut self, data: Vec<Vec<f64>>) {
+            if data.len() != self.shape.0.try_into().unwrap() || data[0].len() != self.shape.1.try_into().unwrap() {
+                panic!("Can not set matrix to a mishaped vector!")
+            }
+            self.data = data;
+        }
         /// calculates the dot product of two matrices
-        pub fn dot(&self, _other: Matrix) {
-            todo!()
+        pub fn dot(a: Matrix, b: Matrix) -> Matrix {
+            if b.shape.0 != a.shape.1 || a.shape.1 != b.shape.0 {
+                panic!("Can not multiply matrices with shapes {:?} and {:?}", a.shape, b.shape);
+            }
+            let mut result = Matrix::new(a.shape.0, b.shape.1);
+            for i in 0..result.shape.0 {
+                for j in 0..result.shape.1 {
+                    for k in 0..a.shape.1 {
+                        result.data[i as usize][j as usize] += a.data[i as usize][k as usize] * b.data[k as usize][j as usize];
+                    }
+                }
+            }
+            result
         }
     }
     impl std::ops::Add<Matrix> for Matrix {
