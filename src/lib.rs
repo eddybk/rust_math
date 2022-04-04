@@ -100,4 +100,19 @@ mod tests {
         let vec = vec![vec![0.0; 2]; 2];
         assert_eq!((vec, (2, 2)), (data, shape));
     }
+    #[test]
+    fn it_tests_matrix_ones_construction() {
+        use crate::matrix::matrix;
+        let shape = matrix::Matrix::ones(2, 2).shape();
+        let data = matrix::Matrix::ones(2, 2).as_vec();
+        let vec = vec![vec![1.; 2]; 2];
+        assert_eq!((vec, (2, 2)), (data, shape));
+    }
+    #[test]
+    fn it_tests_random_matrix_construction() {
+        use crate::matrix::matrix;
+        let m = matrix::Matrix::random((2, 2), (-1., 0.));
+        assert_ne!(m.as_vec()[0][0], m.as_vec()[0][1]);
+        assert_ne!(m.as_vec()[1][0], m.as_vec()[1][1]);
+    }
 }
