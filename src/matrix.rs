@@ -50,11 +50,25 @@ pub mod matrix {
                 data: v
             }
         }
+        /// sets self.data to parameter data
+        /// ### Panics
+        /// > if the parameter datas shape doesnt match self.shape
         pub fn set(&mut self, data: Vec<Vec<f64>>) {
             if data.len() != self.shape.0.try_into().unwrap() || data[0].len() != self.shape.1.try_into().unwrap() {
                 panic!("Can not set matrix to a mishaped vector!")
             }
             self.data = data;
+        }
+        #[allow(non_snake_case)]
+        /// returns trasposed self
+        pub fn T(&self) -> Matrix {
+            let mut ret = vec![vec![0.0; self.shape.0 as usize]; self.shape.1 as usize];
+            for i in 0..self.shape.1 as usize {
+                for j in 0..self.shape.0 as usize {
+                    ret[i][j] = self.data[j][i];
+                }
+            }
+            Matrix { shape: (self.shape.1, self.shape.0), data: ret }
         }
         /// calculates the dot product of two matrices
         pub fn dot(a: Matrix, b: Matrix) -> Matrix {

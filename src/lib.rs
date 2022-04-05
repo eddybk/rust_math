@@ -133,4 +133,11 @@ mod tests {
         let res = vec![vec![22., 28.], vec![49., 64.]];
         assert_eq!(res, matrix::Matrix::dot(m, m2).as_vec());
     }
+    #[test]
+    fn it_tests_matrix_transposition() {
+        use crate::matrix::matrix;
+        let mut m = matrix::Matrix::new(2, 3);
+        m.set(vec![vec![1., 3., 5.], vec![2., 4., 6.]]);
+        assert_eq!(m.T().as_vec(), vec![vec![1., 2.], vec![3., 4.], vec![5., 6.]]);
+    }
 }
